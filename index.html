@@ -685,86 +685,92 @@
         }
 
         // ============================================================
-        //  5. 更新 UI
+        //  5. 更新 UI（使用 requestAnimationFrame 优化）
         // ============================================================
+        let animationFrameId = null;
+
         function updateRecommendation() {
-            const height = parseInt(heightSlider.value, 10);
-            const weight = parseInt(weightSlider.value, 10);
-
-            // 更新显示
-            heightDisplay.innerHTML = `${height} <span class="unit">cm</span>`;
-            weightDisplay.innerHTML = `${weight} <span class="unit">斤</span>`;
-
-            // 推荐
-            const result = recommendSize(height, weight);
-
-            // 显示结果
-            placeholder.style.display = 'none';
-            resultContent.style.display = 'block';
-            resultArea.classList.add('has-result');
-
-            // 尺码展示
-            const sizeParts = result.size.split(' ');
-            const mainSize = sizeParts[0] || result.size;
-            const subLabel = result.label ? `(${result.label})` : '';
-            resultSize.innerHTML = `${mainSize} <span class="sub-code">${subLabel}</span>`;
-
-            // 详情
-            let hRange = `${result.heightMin}-${result.heightMax}`;
-            let wRange = `${result.weightMin}-${result.weightMax}`;
-            if (result.weightMin === 0) {
-                wRange = `< ${result.weightMax}`;
+            // 取消上一帧的更新（防止堆积）
+            if (animationFrameId !== null) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
             }
-            if (result.weightMax === 999) {
-                wRange = `≥ ${result.weightMin}`;
-            }
-            detailHeight.textContent = hRange;
-            detailWeight.textContent = wRange;
 
-            // 提示
-            resultTip.innerHTML = `<span class="emoji">✅</span> ${result.tip || '标准尺码，可按习惯购买'}`;
+            animationFrameId = requestAnimationFrame(() => {
+                const height = parseInt(heightSlider.value, 10);
+                const weight = parseInt(weightSlider.value, 10);
 
-            // 高亮尺码表对应行
-            highlightTableRow(result.size, result.label);
-        }
+                // 更新显示
+                heightDisplay.innerHTML = `${height} <span class="unit">cm</span>`;
+                weightDisplay.innerHTML = `${weight} <span class="unit">斤</span>`;
 
-        // ============================================================
-        //  6. 尺码表高亮
-        // ============================================================
-        function highlightTableRow(sizeCode, label) {
-            const rows = sizeTableBody.querySelectorAll('tr');
-            rows.forEach(row => {
-                row.classList.remove('highlight-row');
-                const td = row.querySelector('.size-code');
-                if (td) {
-                    const text = td.textContent.trim();
-                    // 匹配 "3XL (180)" 或 "3XL"
-                    const match = text.match(/^([^\s(]+)/);
-                    if (match) {
-                        const code = match[1];
-                        if (code === sizeCode || text.includes(sizeCode)) {
-                            row.classList.add('highlight-row');
-                        }
-                    }
-                    // 特殊处理 "M 或更小" / "5XL 或更大"
-                    if (sizeCode === 'M 或更小' && text.startsWith('M')) {
-                        row.classList.add('highlight-row');
-                    }
-                    if (sizeCode === '5XL 或更大' && text.startsWith('5XL')) {
-                        row.classList.add('highlight-row');
-                    }
+                // 推荐
+                const result = recommendSize(height, weight);
+
+                // 显示结果
+                placeholder.style.display = 'none';
+                resultContent.style.display = 'block';
+                resultArea.classList.add('has-result');
+
+                // 尺码展示
+                const sizeParts = result.size.split(' ');
+                const mainSize = sizeParts[0] || result.size;
+                const subLabel = result.label ? `(${result.label})` : '';
+                resultSize.innerHTML = `${mainSize} <span class="sub-code">${subLabel}</span>`;
+
+                // 详情
+                let hRange = `${result.heightMin}-${result.heightMax}`;
+                let wRange = `${result.weightMin}-${result.weightMax}`;
+                if (result.weightMin === 0) {
+                    wRange = `< ${result.weightMax}`;
                 }
+                if (result.weightMax === 999) {
+                    wRange = `≥ ${result.weightMin}`;
+                }
+                detailHeight.textContent = hRange;
+                detailWeight.textContent = wRange;
+
+                // 提示
+                resultTip.innerHTML = `<span class="emoji">✅</span> ${result.tip || '标准尺码，可按习惯购买'}`;
+
+                // 高亮尺码表对应行（快速查找）
+                highlightTableRow(result.size);
+
+                // 重置帧 ID
+                animationFrameId = null;
             });
         }
 
         // ============================================================
-        //  7. 渲染尺码表
+        //  6. 尺码表高亮（使用 data-size 快速定位）
+        // ============================================================
+        function highlightTableRow(sizeCode) {
+            // 移除所有高亮
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+
+            // 直接通过 data-size 属性查找
+            let targetRow = document.querySelector(`tr[data-size="${sizeCode}"]`);
+            // 特殊处理 "M 或更小" / "5XL 或更大"
+            if (!targetRow) {
+                if (sizeCode === 'M 或更小') {
+                    targetRow = document.querySelector('tr[data-size="M"]');
+                } else if (sizeCode === '5XL 或更大') {
+                    targetRow = document.querySelector('tr[data-size="5XL"]');
+                }
+            }
+            if (targetRow) {
+                targetRow.classList.add('highlight-row');
+            }
+        }
+
+        // ============================================================
+        //  7. 渲染尺码表（加入 data-size 属性）
         // ============================================================
         function renderSizeTable() {
             let html = '';
             for (const s of SIZE_DATA) {
                 html += `
-                    <tr>
+                    <tr data-size="${s.code}">
                         <td class="size-code">${s.code} (${s.label})</td>
                         <td>${s.heightMin}-${s.heightMax}</td>
                         <td>${s.weightMin}-${s.weightMax}</td>
@@ -776,7 +782,7 @@
             // 默认高亮（基于初始值 160/120）
             setTimeout(() => {
                 const result = recommendSize(160, 120);
-                highlightTableRow(result.size, result.label);
+                highlightTableRow(result.size);
             }, 50);
         }
 
@@ -812,10 +818,11 @@
         // 初始渲染
         renderSizeTable();
         renderUserRefs();
-        updateRecommendation();
+        // 手动触发一次初始推荐（因为滑块初始值就是 160/120）
+        setTimeout(updateRecommendation, 100);
 
         // ============================================================
-        //  10. PWA 安装逻辑（参考 index.html）
+        //  10. PWA 安装逻辑
         // ============================================================
         let deferredPrompt;
         const installBanner = document.getElementById('installBanner');
@@ -847,7 +854,7 @@
         // ============================================================
         //  11. 窗口 resize 时保持 UI 整洁（无额外操作）
         // ============================================================
-        console.log('👗 旗袍尺码推荐工具已加载');
+        console.log('👗 旗袍尺码推荐工具已加载（优化版）');
         console.log('📐 身高范围: 145-175 cm, 体重范围: 85-180 斤');
     </script>
 
