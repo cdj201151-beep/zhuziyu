@@ -14,7 +14,6 @@
     <meta name="theme-color" content="#f5f5f7">
 
     <style>
-        /* ===== 基础重置 ===== */
         * {
             margin: 0;
             padding: 0;
@@ -35,7 +34,6 @@
             width: 100%;
         }
 
-        /* ===== 头部 ===== */
         .header {
             text-align: center;
             margin-bottom: 28px;
@@ -61,10 +59,8 @@
             font-size: 15px;
             margin-top: 6px;
             font-weight: 400;
-            letter-spacing: 0.3px;
         }
 
-        /* ===== 安装提示 ===== */
         .install-banner {
             display: none;
             background: #0071e3;
@@ -85,14 +81,12 @@
             display: block;
         }
 
-        /* ===== 主卡片 ===== */
         .card {
             background: #ffffff;
             border-radius: 20px;
             padding: 24px 20px 28px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
             margin-bottom: 20px;
-            transition: box-shadow 0.3s ease;
         }
 
         .card-title {
@@ -115,11 +109,9 @@
             margin-left: auto;
         }
 
-        /* ===== 滑块组 ===== */
         .slider-group {
             margin-bottom: 22px;
         }
-
         .slider-group:last-of-type {
             margin-bottom: 28px;
         }
@@ -156,7 +148,6 @@
             margin-left: 2px;
         }
 
-        /* 自定义滑块 */
         input[type="range"] {
             -webkit-appearance: none;
             appearance: none;
@@ -165,7 +156,6 @@
             border-radius: 4px;
             background: #e5e5ea;
             outline: none;
-            transition: background 0.2s;
             margin-top: 4px;
             cursor: pointer;
         }
@@ -179,12 +169,6 @@
             background: #0071e3;
             cursor: pointer;
             box-shadow: 0 2px 8px rgba(0, 113, 227, 0.35);
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
-        }
-
-        input[type="range"]::-webkit-slider-thumb:hover {
-            transform: scale(1.08);
-            box-shadow: 0 4px 14px rgba(0, 113, 227, 0.45);
         }
 
         input[type="range"]::-moz-range-thumb {
@@ -197,19 +181,14 @@
             box-shadow: 0 2px 8px rgba(0, 113, 227, 0.35);
         }
 
-        input[type="range"]:focus {
-            outline: none;
-        }
-
-        /* ===== 推荐结果 ===== */
         .result-area {
             background: #f8f9fc;
             border-radius: 16px;
             padding: 20px 18px 18px;
             text-align: center;
             margin-top: 4px;
-            transition: all 0.3s ease;
             border: 2px solid transparent;
+            transition: all 0.3s ease;
         }
 
         .result-area.has-result {
@@ -234,7 +213,7 @@
         }
 
         .result-area .result-size .sub-code {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 500;
             color: #86868b;
             margin-left: 6px;
@@ -255,15 +234,8 @@
             align-items: center;
             gap: 4px;
         }
-
-        .result-area .result-detail .label {
-            color: #6e6e73;
-        }
-
-        .result-area .result-detail .val {
-            color: #1d1d1f;
-            font-weight: 500;
-        }
+        .result-area .result-detail .label { color: #6e6e73; }
+        .result-area .result-detail .val { color: #1d1d1f; font-weight: 500; }
 
         .result-area .result-tip {
             margin-top: 12px;
@@ -275,24 +247,20 @@
             display: inline-block;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
         }
-
-        .result-area .result-tip .emoji {
-            margin-right: 6px;
-        }
+        .result-area .result-tip .emoji { margin-right: 6px; }
 
         .result-placeholder {
             color: #aeaeb2;
             font-size: 15px;
             padding: 20px 0 10px;
         }
-
         .result-placeholder .big {
             font-size: 38px;
             display: block;
             margin-bottom: 8px;
         }
 
-        /* ===== 尺码对照表 ===== */
+        /* 尺码表 */
         .size-table {
             width: 100%;
             border-collapse: collapse;
@@ -307,7 +275,6 @@
             padding: 10px 6px;
             text-align: center;
             font-size: 12px;
-            letter-spacing: 0.3px;
             border-bottom: 1px solid #e5e5ea;
         }
 
@@ -316,144 +283,27 @@
             text-align: center;
             color: #1d1d1f;
             border-bottom: 1px solid #f2f2f7;
-            font-weight: 450;
         }
 
-        .size-table tr:last-child td {
-            border-bottom: none;
-        }
-
+        .size-table tr:last-child td { border-bottom: none; }
         .size-table .highlight-row td {
             background: #e8f0fe;
-            border-radius: 8px;
             font-weight: 600;
             color: #0071e3;
         }
 
-        .size-table .size-code {
-            font-weight: 600;
-            color: #1d1d1f;
-        }
-
-        /* ===== 用户参考 ===== */
-        .user-refs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-top: 4px;
-        }
-
-        .user-ref-item {
-            background: #f8f9fc;
-            border-radius: 10px;
-            padding: 10px 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            transition: background 0.15s;
-        }
-
-        .user-ref-item .info {
-            color: #1d1d1f;
-        }
-
-        .user-ref-item .info .height-weight {
-            font-weight: 500;
-        }
-
-        .user-ref-item .info .detail {
-            color: #86868b;
-            font-size: 11px;
-            margin-left: 4px;
-        }
-
-        .user-ref-item .ref-size {
-            font-weight: 600;
-            color: #0071e3;
-            background: #e8f0fe;
-            padding: 2px 12px;
-            border-radius: 12px;
-            font-size: 13px;
-        }
-
-        .user-ref-more {
-            text-align: center;
-            color: #86868b;
-            font-size: 12px;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid #f2f2f7;
-        }
-
-        /* ===== 底部 ===== */
         .footer {
             text-align: center;
             padding: 20px 0 8px;
             color: #86868b;
             font-size: 13px;
-            letter-spacing: 0.3px;
         }
 
-        /* ===== 响应式 ===== */
         @media (max-width: 420px) {
-            .result-area .result-size {
-                font-size: 40px;
-            }
-            .result-area .result-size .sub-code {
-                font-size: 20px;
-            }
-            .user-refs {
-                grid-template-columns: 1fr;
-            }
-            .result-area .result-detail {
-                gap: 10px;
-                font-size: 13px;
-            }
-            .card {
-                padding: 18px 14px 22px;
-            }
-            .slider-value {
-                font-size: 17px;
-                min-width: 56px;
-                line-height: 30px;
-            }
-        }
-
-        @media (min-width: 600px) {
-            .user-refs {
-                grid-template-columns: 1fr 1fr 1fr;
-            }
-        }
-
-        /* ===== 工具类 ===== */
-        .mt-8 {
-            margin-top: 8px;
-        }
-        .mb-8 {
-            margin-bottom: 8px;
-        }
-        .text-center {
-            text-align: center;
-        }
-        .text-muted {
-            color: #86868b;
-        }
-        .fw-600 {
-            font-weight: 600;
-        }
-
-        /* 滚动条 */
-        ::-webkit-scrollbar {
-            width: 4px;
-            height: 4px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f5f5f7;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #d2d2d7;
-            border-radius: 4px;
+            .result-area .result-size { font-size: 40px; }
+            .result-area .result-size .sub-code { font-size: 16px; }
+            .card { padding: 18px 14px 22px; }
+            .slider-value { font-size: 17px; min-width: 56px; line-height: 30px; }
         }
     </style>
 </head>
@@ -461,21 +311,21 @@
 
     <div class="container">
 
-        <!-- ===== 头部 ===== -->
+        <!-- 头部 -->
         <div class="header">
             <div class="brand">
                 <span class="icon">👗</span>
                 中国六礼旗袍
             </div>
-            <div class="sub">智能尺码推荐 · 根据身高体重精准匹配</div>
+            <div class="sub">真实买家大数据 · 身高+体重精准匹配</div>
         </div>
 
-        <!-- ===== 安装提示 ===== -->
+        <!-- 安装提示 -->
         <div class="install-banner" id="installBanner">
             ⬇️ 点击此处安装到桌面，像 App 一样使用
         </div>
 
-        <!-- ===== 主卡片：尺码选择 ===== -->
+        <!-- 主卡片：选择身体数据 -->
         <div class="card">
             <div class="card-title">
                 📏 选择身体数据
@@ -488,7 +338,7 @@
                     <span class="slider-label">👤 身高</span>
                     <span class="slider-value" id="heightDisplay">160 <span class="unit">cm</span></span>
                 </div>
-                <input type="range" id="heightSlider" min="145" max="175" value="160" step="1">
+                <input type="range" id="heightSlider" min="152" max="175" value="160" step="1">
             </div>
 
             <!-- 体重 -->
@@ -497,7 +347,7 @@
                     <span class="slider-label">⚖️ 体重</span>
                     <span class="slider-value" id="weightDisplay">120 <span class="unit">斤</span></span>
                 </div>
-                <input type="range" id="weightSlider" min="85" max="180" value="120" step="1">
+                <input type="range" id="weightSlider" min="80" max="240" value="120" step="1">
             </div>
 
             <!-- 推荐结果 -->
@@ -508,10 +358,10 @@
                 </div>
                 <div id="resultContent" style="display: none;">
                     <div class="result-label">✨ 推荐尺码</div>
-                    <div class="result-size" id="resultSize">3XL <span class="sub-code">(180)</span></div>
+                    <div class="result-size" id="resultSize">3XL <span class="sub-code">(158-168cm / 122-130斤)</span></div>
                     <div class="result-detail" id="resultDetail">
-                        <span><span class="label">身高</span> <span class="val" id="detailHeight">150-170</span> cm</span>
-                        <span><span class="label">体重</span> <span class="val" id="detailWeight">140-150</span> 斤</span>
+                        <span><span class="label">身高</span> <span class="val" id="detailHeight">158-168</span> cm</span>
+                        <span><span class="label">体重</span> <span class="val" id="detailWeight">122-130</span> 斤</span>
                     </div>
                     <div class="result-tip" id="resultTip">
                         <span class="emoji">✅</span> 标准尺码，可按习惯购买
@@ -520,7 +370,7 @@
             </div>
         </div>
 
-        <!-- ===== 卡片：尺码对照表 ===== -->
+        <!-- 卡片：尺码对照表 -->
         <div class="card">
             <div class="card-title">
                 📋 尺码对照表
@@ -539,25 +389,11 @@
                 </tbody>
             </table>
             <div style="font-size:12px; color:#aeaeb2; margin-top:12px; text-align:center;">
-                手工测量存在细微误差，仅供参考
+                基于真实买家大数据，仅供参考
             </div>
         </div>
 
-        <!-- ===== 卡片：已购用户参考 ===== -->
-        <div class="card">
-            <div class="card-title">
-                👥 已购用户参考
-                <span class="badge">真实数据</span>
-            </div>
-            <div class="user-refs" id="userRefs">
-                <!-- JS 渲染 -->
-            </div>
-            <div class="user-ref-more">
-                以上信息来源于已购用户，仅供参考
-            </div>
-        </div>
-
-        <!-- ===== 底部 ===== -->
+        <!-- 底部 -->
         <div class="footer">
             Copyright © 2026 中国六礼旗袍 · 可安装到桌面
         </div>
@@ -565,45 +401,24 @@
 
     <script>
         // ============================================================
-        //  1. 尺码数据（基于第三张图）
+        //  1. 尺码数据（基于真实买家大数据）
         // ============================================================
         const SIZE_DATA = [
-            { code: 'M', label: '160', heightMin: 150, heightMax: 170, weightMin: 100, weightMax: 110 },
-            { code: 'L', label: '165', heightMin: 150, heightMax: 170, weightMin: 110, weightMax: 120 },
-            { code: 'XL', label: '170', heightMin: 150, heightMax: 170, weightMin: 120, weightMax: 130 },
-            { code: '2XL', label: '175', heightMin: 150, heightMax: 170, weightMin: 130, weightMax: 140 },
-            { code: '3XL', label: '180', heightMin: 150, heightMax: 170, weightMin: 140, weightMax: 150 },
-            { code: '4XL', label: '185', heightMin: 150, heightMax: 170, weightMin: 150, weightMax: 160 },
-            { code: '5XL', label: '190', heightMin: 150, heightMax: 170, weightMin: 160, weightMax: 170 },
+            { code: 'M',   label: 'M',   heightMin: 152, heightMax: 160, weightMin: 80,  weightMax: 100 },
+            { code: 'L',   label: 'L',   heightMin: 153, heightMax: 163, weightMin: 100, weightMax: 110 },
+            { code: 'XL',  label: 'XL',  heightMin: 155, heightMax: 164, weightMin: 110, weightMax: 115 },
+            { code: '2XL', label: '2XL', heightMin: 156, heightMax: 165, weightMin: 115, weightMax: 122 },
+            { code: '3XL', label: '3XL', heightMin: 158, heightMax: 168, weightMin: 122, weightMax: 130 },
+            { code: '4XL', label: '4XL', heightMin: 160, heightMax: 170, weightMin: 130, weightMax: 145 },
+            { code: '5XL', label: '5XL', heightMin: 160, heightMax: 172, weightMin: 145, weightMax: 168 },
+            { code: '6XL', label: '6XL', heightMin: 162, heightMax: 173, weightMin: 168, weightMax: 185 },
+            { code: '7XL', label: '7XL', heightMin: 162, heightMax: 174, weightMin: 185, weightMax: 202 },
+            { code: '8XL', label: '8XL', heightMin: 163, heightMax: 175, weightMin: 202, weightMax: 220 },
+            { code: '9XL', label: '9XL', heightMin: 164, heightMax: 175, weightMin: 220, weightMax: 240 },
         ];
 
         // ============================================================
-        //  2. 用户参考数据（从第一、二张图提取）
-        // ============================================================
-        const USER_REFS = [
-            { height: 160, weight: 112, size: '2XL' },
-            { height: 157, weight: 110, size: '2XL' },
-            { height: 162, weight: 122, size: '3XL' },
-            { height: 161, weight: 114, size: '3XL' },
-            { height: 159, weight: 114, size: '3XL' },
-            { height: 161, weight: 122, size: '5XL' },
-            { height: 160, weight: 132, size: '5XL' },
-            { height: 158, weight: 138, size: '5XL' },
-            { height: 162, weight: 130, size: '5XL' },
-            { height: 159, weight: 144, size: '5XL' },
-            { height: 160, weight: 118, size: '2XL' },
-            { height: 165, weight: 140, size: '2XL' },
-            { height: 162, weight: 116, size: '3XL' },
-            { height: 161, weight: 124, size: '3XL' },
-            { height: 167, weight: 132, size: '4XL' },
-            { height: 160, weight: 126, size: '4XL' },
-            { height: 167, weight: 148, size: '4XL' },
-            { height: 171, weight: 168, size: '5XL' },
-            { height: 167, weight: 168, size: '5XL' },
-        ];
-
-        // ============================================================
-        //  3. DOM 引用
+        //  2. DOM 引用
         // ============================================================
         const heightSlider = document.getElementById('heightSlider');
         const weightSlider = document.getElementById('weightSlider');
@@ -617,80 +432,61 @@
         const detailWeight = document.getElementById('detailWeight');
         const resultTip = document.getElementById('resultTip');
         const sizeTableBody = document.getElementById('sizeTableBody');
-        const userRefsContainer = document.getElementById('userRefs');
 
         // ============================================================
-        //  4. 核心推荐函数
+        //  3. 核心推荐函数（同时考虑身高和体重）
         // ============================================================
         function recommendSize(height, weight) {
-            // 如果体重超出范围，给出特殊提示
-            if (weight < 100) {
-                return {
-                    size: 'M 或更小',
-                    label: '—',
-                    heightMin: 150,
-                    heightMax: 170,
-                    weightMin: 0,
-                    weightMax: 100,
-                    tip: '体重偏轻，建议选择 M 码或更小码，具体请参考试穿'
-                };
-            }
-            if (weight > 170) {
-                return {
-                    size: '5XL 或更大',
-                    label: '190+',
-                    heightMin: 150,
-                    heightMax: 170,
-                    weightMin: 170,
-                    weightMax: 999,
-                    tip: '体重偏重，建议选择 5XL 或更大码，具体请参考试穿'
-                };
-            }
-
-            // 身高超出范围提示
-            let heightNote = '';
-            if (height < 150) {
-                heightNote = ' (身高偏矮，建议选小一码)';
-            } else if (height > 170) {
-                heightNote = ' (身高偏高，建议选大一码)';
-            }
-
-            // 根据体重查找尺码
+            // 先找完全匹配
             for (const s of SIZE_DATA) {
-                if (weight >= s.weightMin && weight < s.weightMax) {
-                    let tip = '标准尺码，可按习惯购买';
-                    if (height < 150) {
-                        tip = '身高偏矮，建议选小一码试穿';
-                    } else if (height > 170) {
-                        tip = '身高偏高，建议选大一码试穿';
-                    }
-                    return {
-                        ...s,
-                        tip: tip + heightNote,
-                        heightNote: heightNote
-                    };
+                if (weight >= s.weightMin && weight < s.weightMax &&
+                    height >= s.heightMin && height < s.heightMax) {
+                    return { ...s, tip: '✅ 完美匹配！身高体重均在推荐区间内', matchType: 'perfect' };
                 }
             }
 
-            // fallback
+            // 再找体重匹配
+            let weightMatch = null;
+            for (const s of SIZE_DATA) {
+                if (weight >= s.weightMin && weight < s.weightMax) {
+                    weightMatch = s;
+                    break;
+                }
+            }
+            if (weightMatch) {
+                let tip = '体重匹配，但身高不在推荐区间内，建议试穿';
+                if (height < weightMatch.heightMin) tip = '身高偏低，建议选小一码试穿';
+                else if (height > weightMatch.heightMax) tip = '身高偏高，建议选大一码试穿';
+                return { ...weightMatch, tip: '⚠️ ' + tip, matchType: 'weight-only' };
+            }
+
+            // 体重完全超范围，取最近的
+            let closest = null;
+            let minDiff = Infinity;
+            for (const s of SIZE_DATA) {
+                let diff = 0;
+                if (weight < s.weightMin) diff = s.weightMin - weight;
+                else if (weight >= s.weightMax) diff = weight - s.weightMax + 1;
+                if (diff < minDiff) { minDiff = diff; closest = s; }
+            }
+            if (closest) {
+                return { ...closest, tip: '📌 体重超出常规范围，建议参考尺码表或咨询客服', matchType: 'fallback' };
+            }
+
+            // 兜底
             return {
-                size: '3XL',
-                label: '180',
-                heightMin: 150,
-                heightMax: 170,
-                weightMin: 140,
-                weightMax: 150,
-                tip: '建议参考尺码表或咨询客服'
+                code: '3XL', label: '3XL', heightMin: 158, heightMax: 168,
+                weightMin: 122, weightMax: 130,
+                tip: '建议参考尺码表或咨询客服', matchType: 'fallback'
             };
         }
 
         // ============================================================
-        //  5. 更新 UI（使用 requestAnimationFrame 优化）
+        //  4. 更新 UI（使用 requestAnimationFrame 优化）
         // ============================================================
         let animationFrameId = null;
 
         function updateRecommendation() {
-            // 取消上一帧的更新（防止堆积）
             if (animationFrameId !== null) {
                 cancelAnimationFrame(animationFrameId);
                 animationFrameId = null;
@@ -700,129 +496,82 @@
                 const height = parseInt(heightSlider.value, 10);
                 const weight = parseInt(weightSlider.value, 10);
 
-                // 更新显示
                 heightDisplay.innerHTML = `${height} <span class="unit">cm</span>`;
                 weightDisplay.innerHTML = `${weight} <span class="unit">斤</span>`;
 
-                // 推荐
                 const result = recommendSize(height, weight);
 
-                // 显示结果
                 placeholder.style.display = 'none';
                 resultContent.style.display = 'block';
                 resultArea.classList.add('has-result');
 
-                // 尺码展示
-                const sizeParts = result.size.split(' ');
-                const mainSize = sizeParts[0] || result.size;
-                const subLabel = result.label ? `(${result.label})` : '';
+                const mainSize = result.code || result.label;
+                const subLabel = `(${result.heightMin}-${result.heightMax}cm / ${result.weightMin}-${result.weightMax}斤)`;
                 resultSize.innerHTML = `${mainSize} <span class="sub-code">${subLabel}</span>`;
 
-                // 详情
-                let hRange = `${result.heightMin}-${result.heightMax}`;
+                detailHeight.textContent = `${result.heightMin}-${result.heightMax}`;
                 let wRange = `${result.weightMin}-${result.weightMax}`;
-                if (result.weightMin === 0) {
-                    wRange = `< ${result.weightMax}`;
-                }
-                if (result.weightMax === 999) {
-                    wRange = `≥ ${result.weightMin}`;
-                }
-                detailHeight.textContent = hRange;
+                if (result.weightMin === 0) wRange = `< ${result.weightMax}`;
+                if (result.weightMax === 999) wRange = `≥ ${result.weightMin}`;
                 detailWeight.textContent = wRange;
 
-                // 提示
-                resultTip.innerHTML = `<span class="emoji">✅</span> ${result.tip || '标准尺码，可按习惯购买'}`;
+                let tipText = result.tip || '标准尺码，可按习惯购买';
+                if (result.matchType === 'perfect') {
+                    tipText = '✅ 完美匹配！身高体重均在推荐区间内';
+                } else if (result.matchType === 'weight-only') {
+                    tipText = '⚠️ ' + tipText;
+                } else {
+                    tipText = '📌 ' + tipText;
+                }
+                resultTip.innerHTML = `<span class="emoji">💡</span> ${tipText}`;
 
-                // 高亮尺码表对应行（快速查找）
-                highlightTableRow(result.size);
+                highlightTableRow(result.code);
 
-                // 重置帧 ID
                 animationFrameId = null;
             });
         }
 
         // ============================================================
-        //  6. 尺码表高亮（使用 data-size 快速定位）
+        //  5. 尺码表高亮
         // ============================================================
         function highlightTableRow(sizeCode) {
-            // 移除所有高亮
             document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
-
-            // 直接通过 data-size 属性查找
-            let targetRow = document.querySelector(`tr[data-size="${sizeCode}"]`);
-            // 特殊处理 "M 或更小" / "5XL 或更大"
-            if (!targetRow) {
-                if (sizeCode === 'M 或更小') {
-                    targetRow = document.querySelector('tr[data-size="M"]');
-                } else if (sizeCode === '5XL 或更大') {
-                    targetRow = document.querySelector('tr[data-size="5XL"]');
-                }
-            }
-            if (targetRow) {
-                targetRow.classList.add('highlight-row');
-            }
+            const targetRow = document.querySelector(`tr[data-size="${sizeCode}"]`);
+            if (targetRow) targetRow.classList.add('highlight-row');
         }
 
         // ============================================================
-        //  7. 渲染尺码表（加入 data-size 属性）
+        //  6. 渲染尺码表
         // ============================================================
         function renderSizeTable() {
             let html = '';
             for (const s of SIZE_DATA) {
                 html += `
                     <tr data-size="${s.code}">
-                        <td class="size-code">${s.code} (${s.label})</td>
+                        <td class="size-code">${s.code}</td>
                         <td>${s.heightMin}-${s.heightMax}</td>
                         <td>${s.weightMin}-${s.weightMax}</td>
                     </tr>
                 `;
             }
             sizeTableBody.innerHTML = html;
-
-            // 默认高亮（基于初始值 160/120）
             setTimeout(() => {
                 const result = recommendSize(160, 120);
-                highlightTableRow(result.size);
+                highlightTableRow(result.code);
             }, 50);
         }
 
         // ============================================================
-        //  8. 渲染用户参考
-        // ============================================================
-        function renderUserRefs() {
-            // 随机打乱并取前 12 个，让展示更多样
-            const shuffled = [...USER_REFS].sort(() => Math.random() - 0.5);
-            const selected = shuffled.slice(0, 12);
-
-            let html = '';
-            for (const u of selected) {
-                html += `
-                    <div class="user-ref-item">
-                        <span class="info">
-                            <span class="height-weight">${u.height}cm ${u.weight}斤</span>
-                            <span class="detail">→</span>
-                        </span>
-                        <span class="ref-size">${u.size}</span>
-                    </div>
-                `;
-            }
-            userRefsContainer.innerHTML = html;
-        }
-
-        // ============================================================
-        //  9. 事件绑定
+        //  7. 事件绑定 & 初始化
         // ============================================================
         heightSlider.addEventListener('input', updateRecommendation);
         weightSlider.addEventListener('input', updateRecommendation);
 
-        // 初始渲染
         renderSizeTable();
-        renderUserRefs();
-        // 手动触发一次初始推荐（因为滑块初始值就是 160/120）
         setTimeout(updateRecommendation, 100);
 
         // ============================================================
-        //  10. PWA 安装逻辑
+        //  8. PWA 安装逻辑
         // ============================================================
         let deferredPrompt;
         const installBanner = document.getElementById('installBanner');
@@ -851,11 +600,7 @@
             navigator.serviceWorker.register('sw.js').catch(() => {});
         }
 
-        // ============================================================
-        //  11. 窗口 resize 时保持 UI 整洁（无额外操作）
-        // ============================================================
-        console.log('👗 旗袍尺码推荐工具已加载（优化版）');
-        console.log('📐 身高范围: 145-175 cm, 体重范围: 85-180 斤');
+        console.log('👗 旗袍尺码推荐工具（大数据版，无用户参考）已加载');
     </script>
 
 </body>
